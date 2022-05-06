@@ -9,6 +9,7 @@ var currentTemp = $("#current-temp");
 var currentHumidity = $("#current-humidity");
 var currentWindSpeed = $("#current-wind-speed");
 var UVindex = $("#uv-index");
+var UVrating = $("#uv-rating");
 
 var weatherContent = $("#weather-content");
 
@@ -29,7 +30,7 @@ showClear();
 
 // Hitting enter while input is focused will trigger
 // value added to search history
-$(document).on("submit", function(){
+$(document).on("submit", function(event){
     event.preventDefault();
 
     // Grab value entered into search bar 
@@ -110,28 +111,38 @@ function currentConditionsRequest(searchValue) {
             // console.log("UV call: ")
             // console.log(response);
             var UVindexValue = response.value;
-            var UVindexRating = "";
+            var UVratingValue = "";
             // console.log(UVindexValue);
             if (UVindexValue <= 2) {
-                UVindexRating = "Low";
-                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
-                UVindex.css("color", "cyan");
+                console.log("less than 2");
+                UVratingValue = "Low";
+                UVindex.text(`${UVindexValue} -`);
+                UVrating.text(UVratingValue);
+                UVrating.css("color", "blue");
             } else if (UVindexValue <= 5) {
-                UVindexRating = "Moderate";
-                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
-                UVindex.css("color", "yellow");
+                console.log("between 2 and 5");
+                UVratingValue = "Moderate";
+                UVindex.text(`${UVindexValue} -`);
+                UVrating.text(UVratingValue);
+                UVrating.css("color", "gold");
             } else if (UVindexValue <= 7) {
-                UVindexRating = "High";
-                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
-                UVindex.css("color", "orange");
+                console.log("between 5 and 7");
+                UVratingValue = "High";
+                UVindex.text(`${UVindexValue} -`);
+                UVrating.text(UVratingValue);
+                UVrating.css("color", "orange");
             } else if (UVindexValue <= 10) {
-                UVindexRating = "Very High";
-                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
-                UVindex.css("color", "red");
+                console.log("between 7 and 10");
+                UVratingValue = "Very High";
+                UVindex.text(`${UVindexValue} -`);
+                UVrating.text(UVratingValue);
+                UVrating.css("color", "red");
             } else {
-                UVindexRating = "Extreme";
-                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
-                UVindex.css("color", "purple");
+                console.log("greater than 10");
+                UVratingValue = "Extreme";
+                UVindex.text(`${UVindexValue} -`);
+                UVrating.text(UVratingValue);
+                UVrating.css("color", "purple");
             }
         });
 
