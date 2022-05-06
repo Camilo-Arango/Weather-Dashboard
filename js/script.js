@@ -109,22 +109,28 @@ function currentConditionsRequest(searchValue) {
         }).then(function(response){
             // console.log("UV call: ")
             // console.log(response);
-            //add a function that will change the color of the text based on its value
             var UVindexValue = response.value;
+            var UVindexRating = "";
+            // console.log(UVindexValue);
             if (UVindexValue <= 2) {
-                UVindex.text(UVindexValue);
+                UVindexRating = "Low";
+                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
                 UVindex.css("color", "cyan");
             } else if (UVindexValue <= 5) {
-                UVindex.text(UVindexValue);
+                UVindexRating = "Moderate";
+                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
                 UVindex.css("color", "yellow");
             } else if (UVindexValue <= 7) {
-                UVindex.text(UVindexValue);
+                UVindexRating = "High";
+                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
                 UVindex.css("color", "orange");
             } else if (UVindexValue <= 10) {
-                UVindex.text(UVindexValue);
+                UVindexRating = "Very High";
+                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
                 UVindex.css("color", "red");
             } else {
-                UVindex.text(UVindexValue);
+                UVindexRating = "Extreme";
+                UVindex.text(`${UVindexValue} - ${UVindexRating}`);
                 UVindex.css("color", "purple");
             }
         });
